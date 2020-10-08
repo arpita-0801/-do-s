@@ -8,8 +8,8 @@ function submitForm(e){
 
     //disapper after 3 seconds
     setTimeout(function(){
-        document.querySelector('.alert').style.display="none"
-    },2000)
+        document.querySelector('.alert').style.display="none" ;
+        },2000);
 
     document.getElementById('contactForm').reset();
 
