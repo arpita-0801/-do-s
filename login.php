@@ -1,56 +1,61 @@
 <?php
-require("includes/common.php");
-// Redirects the user to products page if logged in.
-if (isset($_SESSION['email'])) {
-    header('location: products.php');
-}
+    require './includes/common.php';
+    // if(isset($_SESSION['email'])){
+    //     header('location:home.php');
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include './includes/links.php'; ?>
+    <title>Login | Lifestyle store</title>
+</head>
+<body>
+     <!-- Header -->
+     <?php
+            include './includes/header.php';
+        ?>
+    <!-- Header End -->
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Login | Life Style Store</title>
-
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </head>
-
-    <body>
-        <?php include 'includes/header.php'; ?>
-        <div id="content">
-            <div class="container-fluid decor_bg" id="login-panel">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-primary" >
-                            <div class="panel-heading">
-                                <h4>LOGIN</h4>
-                            </div>
-                            <div class="panel-body">
-                                <p class="text-warning"><i>Login to make a purchase</i><p>
-                                <form action="login_submit.php" method="POST">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control"  placeholder="Email" name="email" required = "true">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password" name="password" required = "true">
-                                    </div>
-                                    <button type="submit" name="submit" class="btn btn-primary">Login</button><br><br>
-                                    
-                                    <?php   echo  filter_input(INPUT_GET, 'error'); ?>
-                                    
-                                </form><br/>
-                            </div>
-                            <div class="panel-footer"><p>Don't have an account? <a href="signup.php">Register</a></p></div>
-                        </div>
-                    </div>
+    <!-- Main -->
+    <form class="form" action="login_script.php" method="POST">
+        <div class="content">
+        <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+                <div class="form-group">
+                    <p>Don't have an Account? <a href="signup.php">Register</a></p>
                 </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" pattern=".{6,}" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <?php
+                        if(isset($_GET['m1'])){
+                            echo $_GET['m1'];
+                        }
+                    ?>
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Login</button>
+                </div>
+                <div class="form-group">
+                    <p><a href="#">Forgot Password?</a></p>
+                </div>
+            </form>
             </div>
-        </div>
+            </div>
+            </div>
+    <!-- Main End -->
 
-        <?php include 'includes/footer.php'; ?>
-    </body>
+    <!-- Footer -->
+    <?php
+        include './includes/footer.php';
+    ?>
+    <!-- Footer End -->
+</body>
 </html>

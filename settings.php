@@ -1,44 +1,61 @@
 <?php
-require_once("includes/common.php");
-if (!isset($_SESSION['email'])) {
-    header('location: index.php');
-}
+    include './includes/common.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Settings | Life Style Store</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <?php include 'includes/header.php'; ?>
-        <div class="container-fluid" id="content">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4" id="settings-container">
-                    <h4>Change Password</h4>
-                    <form action="settings_script.php" method="POST">
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="old-password"  placeholder="Old Password" required = "true">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="New Password" required = "true">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password1"  placeholder="Re-type New Password" required = "true">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Change</button>
-                        <?php
-                        echo "<br><br><b class='red'>" .filter_input(INPUT_GET, 'error'). "</b>";
-                        ?>
-                    </form>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include './includes/links.php'; ?>
+    <title>Settings | lifestyle store</title>
+</head>
+<body>
+    <!-- Header -->
+    <?php
+        require './includes/header.php';
+    ?>
+    <!-- !Header -->
+
+    <!-- Main -->
+        <div class="content">
+          <div class="container">
+          <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default-setting">
+            <div class="panel-heading">
+              <h2 class="text-center">Change Password</h2>
             </div>
+            <div class="panel-body">
+                <form action="settings_script.php" method="POST">
+                  <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" class="form-control" name="oldPassword" required>                    
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" class="form-control" name="newPassword" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="newPasswordRe">Re-type New Password</label>
+                    <input type="password" class="form-control" name="newPasswordRe" required>                    
+                  </div>
+                  <?php 
+                    if(isset($_GET['m1'])){
+                      echo $_GET['m1'];
+                    }                      
+                    ?>
+                  <input type="submit" class="btn btn-setting btn-block" value="Confirm">
+                </form>
+            </div>
+          </div>
+          </div>
+          </div>
         </div>
-        <?php include("includes/footer.php"); ?>
-    </body>
+    <!-- !Main -->
+
+    <!-- Footer -->
+    <?php
+        require './includes/footer.php';
+    ?>  
+    <!-- !Footer -->
+</body>
 </html>
